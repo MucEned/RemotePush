@@ -17,6 +17,8 @@ public class GhostBall : NormalBall
     }
     public void ToThePool()
     {
+        myStand.status = Node.STATUS.Idle;
+        myStand.myBall = null;
         Destroy(gameObject);
     }
 }

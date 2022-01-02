@@ -38,7 +38,6 @@ public class MainMenu : MonoBehaviour
     }
     void Start()
     {
-        Time.timeScale = 1;
     }
     public void QuitGame(){
         Application.Quit();
@@ -46,6 +45,7 @@ public class MainMenu : MonoBehaviour
     public void LoadSceneIndex(int i)
     {
         // SceneManager.LoadScene(i);
+        Time.timeScale = 1;
         StartCoroutine(LoadYourAsyncScene(i));
     }
     IEnumerator LoadYourAsyncScene(int i)

@@ -227,7 +227,10 @@ public class Board : MonoBehaviour
                 if(nodes[i,j].myBall)
                 {
                     if(nodes[i,j].myBall.GetMyStand() != nodes[i,j])
+                    {
+                        nodes[i,j].status = Node.STATUS.Idle;
                         nodes[i,j].myBall = null;
+                    }
                 }
             }
         }

@@ -226,8 +226,11 @@ public class Board : MonoBehaviour
             {
                 if(nodes[i,j].myBall)
                 {
-                    print(nodes[i,j]);
-                    print(nodes[i,j].myBall.GetMyStand());
+                    if(nodes[i,j].myBall.GetMyStand() != nodes[i,j])
+                    {
+                        nodes[i,j].status = Node.STATUS.Idle;
+                        nodes[i,j].myBall = null;
+                    }
                 }
             }
         }

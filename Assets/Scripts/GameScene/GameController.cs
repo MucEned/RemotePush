@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     const int MAX_BALLS_CAN_CLEAR = 33;
     const int MAX_STEP_CHECK = 4;
-    const int MIN_COLORS_CAN_ROLL = 1;
+    const int MIN_COLORS_CAN_ROLL = 3;
     const int MAX_COLORS_CAN_ROLL = 8;
     const int NO_OF_TURN_TO_GET_NEW_COLOR = 8;
     public static GameController gamecontroller;

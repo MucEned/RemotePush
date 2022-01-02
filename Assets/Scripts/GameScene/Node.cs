@@ -36,7 +36,7 @@ public class Node : MonoBehaviour
     {
         if(GameController.turn == 1 && !GameController.gamecontroller.paused)
         {
-            if(status == STATUS.Holding)
+            if(status == STATUS.Holding && myBall && myBall.GetMyStand() == this)
             {
                 if(!isClassic && myBall.GetComponent<FatBall>())
                     SoundSource.PlaySound("failclick");
@@ -48,6 +48,7 @@ public class Node : MonoBehaviour
             }
             else if (Board.mainBoard.selectingBall)
             {
+                myBall = null;
                 Board.mainBoard.SetTarget(GetComponent<Node>());
             }
         }

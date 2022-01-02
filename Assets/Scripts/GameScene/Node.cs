@@ -56,7 +56,7 @@ public class Node : MonoBehaviour
     {
         status = STATUS.WillSpawn;
         nextSpawnBall = BallPool.TakeMyBall();
-        Debug.Log(this + " Set next ball: " + nextSpawnBall);
+        // Debug.Log(this + " Set next ball: " + nextSpawnBall);
         if(nextSpawnBall)
             nextSpawnBall.SetColor(ballColor);
 

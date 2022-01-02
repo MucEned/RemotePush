@@ -48,6 +48,7 @@ public class Node : MonoBehaviour
             }
             else if (Board.mainBoard.selectingBall)
             {
+                myBall = null;
                 Board.mainBoard.SetTarget(GetComponent<Node>());
             }
         }

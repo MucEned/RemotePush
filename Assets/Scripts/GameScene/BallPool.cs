@@ -29,7 +29,7 @@ public class BallPool : MonoBehaviour
     static public void GiveBackBall(NormalBall Ball)
     {
         Ball.status = NormalBall.STATUS.Idle;
-        Debug.Log("Back from: " + Ball + " By node: " + Ball.GetMyStand());
+        // Debug.Log("Back from: " + Ball + " By node: " + Ball.GetMyStand());
         if(Ball.GetMyStand())
         {
             Ball.GetMyStand().nextSpawnBall = null;

@@ -84,10 +84,6 @@ public class NormalBall : MonoBehaviour
             GameController.turn = 0;
             StartCoroutine(MoveStepByStep());
         }
-        else
-        {
-            print("i got u");
-        }
     }
     IEnumerator MoveStepByStep()
     {

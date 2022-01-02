@@ -212,10 +212,22 @@ public class Board : MonoBehaviour
     }
     public void SetSelectingBall(NormalBall newBall)
     {
+        Refresh();
         UnselectBall();
         selectingBall = newBall;
         selectingBall.SetMeAsSelectedBall();
         RouteForBall();
+    }
+    void Refresh()
+    {
+        for (int i = 0; i < NODES_IN_ROW; i++)
+        {
+            for (int j = 0; j < NODES_IN_ROW; j++)
+            {
+                if(nodes[i,j].myBall != nodes[i,j].myBall.GetMyStand())
+                    nodes[i,j].myBall = null;
+            }
+        }
     }
 
     public void SetTarget(Node newTarget)

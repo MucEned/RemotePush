@@ -28,11 +28,28 @@ public class BallPool : MonoBehaviour
     }
     static public void GiveBackBall(NormalBall Ball)
     {
+        Ball.status = NormalBall.STATUS.Idle;
+        Debug.Log("Back from: " + Ball + " By node: " + Ball.GetMyStand());
         if(Ball.GetMyStand())
         {
-            Ball.GetMyStand().SetMyBall(null);
+            Ball.GetMyStand().nextSpawnBall = null;
         }
-        Ball.status = NormalBall.STATUS.Idle;
         Ball.gameObject.SetActive(false);
     }
+
+    // static public NormalBall RefreshPool()
+    // {
+    //     for (int i = 0; i < MAX_BALLS_IN_POOL; i++)
+    //     {     
+    //         if(Balls[i].status == NormalBall.STATUS.Idle)
+    //         {
+    //             if(Balls[i].GetMyStand())
+    //             {
+    //                 Balls[i].GetMyStand().SetMyBall(null);
+    //                 Balls[i].SetMyStand(null);
+    //             }
+    //         }       
+    //     }
+    //     return null;
+    // }
 }

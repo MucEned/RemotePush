@@ -15,7 +15,7 @@ public class Node : MonoBehaviour
     public int costToSelectedBall = 999;
     public Node previousNode = null;
 
-    private NormalBall myBall = null;
+    public NormalBall myBall = null;
     public NormalBall nextSpawnBall = null;
 
     public bool isAcceptByRouter = false;
@@ -56,6 +56,7 @@ public class Node : MonoBehaviour
     {
         status = STATUS.WillSpawn;
         nextSpawnBall = BallPool.TakeMyBall();
+        Debug.Log(this + " Set next ball: " + nextSpawnBall);
         if(nextSpawnBall)
             nextSpawnBall.SetColor(ballColor);
 
@@ -117,6 +118,7 @@ public class Node : MonoBehaviour
     }
     public void Score()
     {
+        NormalBall temp = myBall;
         if(myBall)
         {
             if (!isClassic && myBall.GetComponent<FatBall>())
@@ -125,10 +127,13 @@ public class Node : MonoBehaviour
                 DataController.datacontroller.AddScore(1);
                 return;
             }
-            myBall.Score(); //delete fat 
+            // status = STATUS.Idle;
+            // myBall = null;
+            DataController.datacontroller.AddScore(1);
+            temp.Score(); //delete fat 
         }
-        status = STATUS.Idle;
-        myBall = null;
+        // status = STATUS.Idle;
+        // myBall = null;
         DataController.datacontroller.AddScore(1);
     }
 
@@ -166,5 +171,9 @@ public class Node : MonoBehaviour
     public bool HasHolding()
     {
         return status == STATUS.Holding && myBall != null;
+    }
+    public void SetMyBallToNull()
+    {
+        myBall = null;
     }
 }

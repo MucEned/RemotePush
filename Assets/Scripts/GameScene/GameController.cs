@@ -7,13 +7,13 @@ public class GameController : MonoBehaviour
 {
     const int MAX_BALLS_CAN_CLEAR = 33;
     const int MAX_STEP_CHECK = 4;
-    const int MIN_COLORS_CAN_ROLL = 3;
+    const int MIN_COLORS_CAN_ROLL = 1;
     const int MAX_COLORS_CAN_ROLL = 8;
     const int NO_OF_TURN_TO_GET_NEW_COLOR = 8;
     public static GameController gamecontroller;
     const int NODES_IN_ROW = 9;
     public static int turn = 1; //0: waiting, 1: thinking
-    public int maxNumberOfColor = 3;
+    public int maxNumberOfColor = 1;
     private GameObject selectingBall = null;
     private int score = 0; 
 
@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
     }
     public void NextTurn()
     {
+        // BallPool.RefreshPool();
         turnCount ++;
         maxNumberOfColor = turnCount / NO_OF_TURN_TO_GET_NEW_COLOR + MIN_COLORS_CAN_ROLL;
         maxNumberOfColor = Mathf.Clamp(maxNumberOfColor, MIN_COLORS_CAN_ROLL, MAX_COLORS_CAN_ROLL);

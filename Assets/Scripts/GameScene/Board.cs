@@ -87,17 +87,20 @@ public class Board : MonoBehaviour
         }
         if (spawnCount < 3)
         {
-            Node randomSubNode = ChooseRandomIdleNode();
-            if (!randomSubNode)
+            for(int i = spawnCount; i < 3 ; i++)
             {
-                Loose();
-                return;
+               Node randomSubNode = ChooseRandomIdleNode();
+                if (!randomSubNode)
+                {
+                    Loose();
+                    return;
+                }
+                randomSubNode.status = Node.STATUS.WillSpawn;
+                randomSubNode.SetNextSpawnBall(GetRandom3Colors()[0]);
+                Array.Resize(ref spawnNodes, spawnNodes.Length + 1);
+                spawnNodes[spawnNodes.Length - 1] = randomSubNode;
+                randomSubNode.SpawnBall();
             }
-            randomSubNode.status = Node.STATUS.WillSpawn;
-            randomSubNode.SetNextSpawnBall(GetRandom3Colors()[0]);
-            Array.Resize(ref spawnNodes, spawnNodes.Length + 1);
-            spawnNodes[spawnNodes.Length - 1] = randomSubNode;
-            randomSubNode.SpawnBall();
         }
         foreach(Node node in spawnNodes)
         {

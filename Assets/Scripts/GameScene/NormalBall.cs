@@ -28,6 +28,14 @@ public class NormalBall : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, nextStep.gameObject.transform.position, Time.deltaTime * speed);
         }
     }
+    void OnDisable()
+    {
+        target = null;
+    }
+    void OnEnable()
+    {
+        target = null;
+    }
     public void SetTarget(Node newTarget)
     {
         target = newTarget;
@@ -44,6 +52,7 @@ public class NormalBall : MonoBehaviour
     }
     public void UnSelectedMe()
     {
+        anim = GetComponent<Animator>();
         anim.Play("Sleeping", 0, 0f);
     }
     protected void ToMovingAnimation()
@@ -70,8 +79,15 @@ public class NormalBall : MonoBehaviour
     }
 
     public void Move(){
-        GameController.turn = 0;
-        StartCoroutine(MoveStepByStep());
+        if(target)
+        {
+            GameController.turn = 0;
+            StartCoroutine(MoveStepByStep());
+        }
+        else
+        {
+            print("i got u");
+        }
     }
     IEnumerator MoveStepByStep()
     {
@@ -104,11 +120,11 @@ public class NormalBall : MonoBehaviour
     protected void ReCalculateStand()
     {
         myStand.status = Node.STATUS.Idle;
-        myStand.SetMyBall(null);
-        if(myStand.nextSpawnBall)
-        {
-            BallPool.GiveBackBall(myStand.nextSpawnBall);
-        }
+        myStand.myBall = null;
+        // if(myStand.nextSpawnBall)
+        // {
+        //     BallPool.GiveBackBall(myStand.nextSpawnBall);
+        // }
 
         myStand = target;
         myStand.SetMyBall(this.GetComponent<NormalBall>());
@@ -138,6 +154,8 @@ public class NormalBall : MonoBehaviour
     }
     public void ToThePool()
     {
+        myStand.status = Node.STATUS.Idle;
+        myStand.myBall = null;
         BallPool.GiveBackBall(this);
     }
 }
